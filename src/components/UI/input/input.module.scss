@@ -1,0 +1,9 @@
+.input {
+	@apply text-center text-xl bg-transparent outline-none;
+}
+.container {
+	@apply relative;
+}
+.message {
+	@apply absolute top-full left-1/2 -translate-x-1/2 w-48 text-sm text-rose-600;
+}

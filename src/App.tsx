@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import SelectTable from './components/selectTable/selectTable';
+import EditTable from './components/editTable/editTable';
+import { fetchTrains, trainsSelector } from './redux/slices/trains';
+import { characterisReducers } from './redux/slices/characteristics';
+import useTypedDispatch from './hooks/useTypedDispatsh';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useTypedDispatch();
+	const data = useSelector(trainsSelector).data;
+	const loading = useSelector(trainsSelector).loading;
+	const [selected, setSelected] = useState<number | null>(null);
+
+	const selectTable = useCallback(
+		(i: number) => {
+			setSelected(i);
+			if (Array.isArray(data[i]?.characteristics)) {
+				dispatch(characterisReducers.init(data[i].characteristics));
+			}
+		},
+		[selected, data]
+	);
+
+	const close = useCallback(() => {
+		setSelected(null);
+	}, []);
+
+	useEffect(() => {
+		dispatch(fetchTrains());
+	}, []);
+
+	return (
+		<main>
+			{loading ? (
+				<p>Loading</p>
+			) : (
+				<SelectTable
+					title="Поезда"
+					legend={['Название', 'Описание']}
+					selected={selected}
+					data={data}
+					onClick={selectTable}
+				/>
+			)}
+			{selected !== null && !!data[selected] && (
+				<EditTable
+					title="Характеристики"
+					name={data[selected].name}
+					data={data[selected].characteristics}
+					onClose={close}
+				/>
+			)}
+		</main>
+	);
 }
 
 export default App;

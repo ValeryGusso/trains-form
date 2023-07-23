@@ -1,0 +1,40 @@
+.container {
+	@apply w-fit py-4 px-12 bg-neutral-200 rounded-2xl;
+}
+.title {
+	@apply text-3xl font-semibold;
+}
+.table {
+	@apply text-xl mt-4 rounded-md;
+	& tr {
+		@apply cursor-pointer even:bg-neutral-300/75 transition;
+		&:hover {
+			@apply scale-110 bg-slate-300;
+		}
+	}
+	& tr:last-child {
+		@apply border-transparent;
+	}
+	& thead {
+		@apply pointer-events-none;
+	}
+	& th {
+		@apply cursor-default px-12 py-4 bg-slate-300;
+	}
+	& th:first-child {
+		@apply rounded-tl-xl;
+	}
+	& th:last-child {
+		@apply rounded-tr-xl;
+	}
+	& td {
+		@apply py-2 text-center;
+	}
+}
+.selected {
+	@apply relative pointer-events-none;
+}
+.selected::after {
+	content: '';
+	@apply absolute top-0 -left-8 h-full w-4 rounded-xl bg-slate-300;
+}
