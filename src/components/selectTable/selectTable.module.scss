@@ -2,10 +2,10 @@
 	@apply w-fit py-4 px-12 bg-neutral-200 rounded-2xl;
 }
 .title {
-	@apply text-3xl font-semibold;
+	@apply text-2xl font-semibold;
 }
 .table {
-	@apply text-xl mt-4 rounded-md;
+	@apply text-lg mt-4 rounded-md;
 	& tr {
 		@apply cursor-pointer even:bg-neutral-300/75 transition;
 		&:hover {
@@ -19,7 +19,7 @@
 		@apply pointer-events-none;
 	}
 	& th {
-		@apply cursor-default px-12 py-4 bg-slate-300;
+		@apply cursor-default px-12 py-2 bg-slate-300;
 	}
 	& th:first-child {
 		@apply rounded-tl-xl;
@@ -28,7 +28,7 @@
 		@apply rounded-tr-xl;
 	}
 	& td {
-		@apply py-2 text-center;
+		@apply py-1 text-center;
 	}
 }
 .selected {

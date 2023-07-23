@@ -1,5 +1,5 @@
 .button {
-	@apply w-fit py-4 px-8 text-2xl font-medium rounded-xl bg-slate-300 select-none transition;
+	@apply w-fit py-4 px-8 text-xl font-medium rounded-xl bg-slate-300 select-none transition;
 	&:hover {
 		@apply bg-slate-400;
 	}

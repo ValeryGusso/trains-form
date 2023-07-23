@@ -7,10 +7,10 @@
 .header {
 	@apply self-start;
 	& > h2 {
-		@apply text-3xl font-semibold;
+		@apply text-2xl font-semibold;
 	}
 	& > h3 {
-		@apply text-2xl font-semibold;
+		@apply text-xl font-semibold;
 	}
 	& > div {
 		@apply absolute top-4 right-12 w-12 h-12 bg-slate-300 cursor-pointer transition;
@@ -34,7 +34,7 @@
 	}
 }
 .table {
-	@apply text-xl rounded-md;
+	@apply text-lg rounded-md;
 	& tr {
 		@apply even:bg-neutral-300/75;
 	}
@@ -42,7 +42,7 @@
 		@apply border-transparent;
 	}
 	& th {
-		@apply cursor-default px-12 py-4 bg-slate-300;
+		@apply cursor-default px-12 py-2 bg-slate-300;
 	}
 	& th:first-child {
 		@apply rounded-tl-xl;
@@ -51,7 +51,7 @@
 		@apply rounded-tr-xl;
 	}
 	& td {
-		@apply py-2;
+		@apply py-1;
 	}
 }
 .precision {
