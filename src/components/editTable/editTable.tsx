@@ -22,7 +22,7 @@ const EditTable: FC<EditTableProps> = React.memo(({ title, name, data, onClose }
 
 	const submit = useCallback(() => {
 		console.log([...values].sort((a, b) => a.speed - b.speed));
-	}, []);
+	}, [values]);
 
 	const reset = useCallback(() => {
 		dispatch(characterisReducers.reset());
