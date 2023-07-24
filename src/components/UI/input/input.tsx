@@ -1,7 +1,7 @@
-import { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './input.module.scss';
-import { characterisReducers, characterisSelector } from '../../../redux/slices/characteristics';
+import { characteristicsReducers, valueSelector } from '../../../redux/slices/characteristics';
 import { Characteristic } from '../../../redux/slices/trains/types';
 import useTypedDispatch from '../../../hooks/useTypedDispatsh';
 
@@ -12,22 +12,22 @@ interface InputProps {
 	message: string;
 }
 
-const Input: FC<InputProps> = ({ model, index, precision, message }) => {
+const Input: FC<InputProps> = React.memo(({ model, index, precision, message }) => {
 	const dispatch = useTypedDispatch();
-	const value = useSelector(characterisSelector).data[index][model];
+	const value = useSelector(valueSelector(index, model));
 
 	function change(e: ChangeEvent<HTMLInputElement>) {
 		if (parseFloat(e.target.value) < 0) return;
 
 		switch (model) {
 			case 'speed':
-				dispatch(characterisReducers.setSpeed({ index, value: parseInt(e.target.value) }));
+				dispatch(characteristicsReducers.setSpeed({ index, value: parseInt(e.target.value) }));
 				break;
 			case 'force':
-				dispatch(characterisReducers.setForce({ index, value: parseFloat((+e.target.value).toFixed(precision)) }));
+				dispatch(characteristicsReducers.setForce({ index, value: parseFloat((+e.target.value).toFixed(precision)) }));
 				break;
 			case 'engineAmperage':
-				dispatch(characterisReducers.setAmperage({ index, value: parseInt(e.target.value) }));
+				dispatch(characteristicsReducers.setAmperage({ index, value: parseInt(e.target.value) }));
 				break;
 		}
 	}
@@ -36,13 +36,13 @@ const Input: FC<InputProps> = ({ model, index, precision, message }) => {
 		if (!value) {
 			switch (model) {
 				case 'speed':
-					dispatch(characterisReducers.setSpeed({ index, value: 0 }));
+					dispatch(characteristicsReducers.setSpeed({ index, value: 0 }));
 					break;
 				case 'force':
-					dispatch(characterisReducers.setForce({ index, value: 0 }));
+					dispatch(characteristicsReducers.setForce({ index, value: 0 }));
 					break;
 				case 'engineAmperage':
-					dispatch(characterisReducers.setAmperage({ index, value: 0 }));
+					dispatch(characteristicsReducers.setAmperage({ index, value: 0 }));
 					break;
 			}
 		}
@@ -73,6 +73,6 @@ const Input: FC<InputProps> = ({ model, index, precision, message }) => {
 			/>
 		</label>
 	);
-};
+});
 
 export default Input;

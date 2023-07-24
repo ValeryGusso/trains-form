@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Input from '../../UI/input/input';
 
 interface RowProps {
@@ -6,7 +6,7 @@ interface RowProps {
 	precision: number;
 }
 
-const Row: FC<RowProps> = ({ index, precision }) => {
+const Row: FC<RowProps> = React.memo(({ index, precision }) => {
 	return (
 		<tr>
 			<td>
@@ -20,6 +20,6 @@ const Row: FC<RowProps> = ({ index, precision }) => {
 			</td>
 		</tr>
 	);
-};
+});
 
 export default Row;

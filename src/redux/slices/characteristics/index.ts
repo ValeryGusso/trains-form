@@ -41,11 +41,14 @@ const characteristicsSlice = createSlice({
 	},
 });
 
-export const characterisReducers = characteristicsSlice.actions;
+export const characteristicsReducers = characteristicsSlice.actions;
 
-export const characterisSelector = (state: RootState) => state.characteris;
+export const characteristicsSelector = (state: RootState) => state.characteristics.data;
+export const valueSelector = (index: number, model: keyof Characteristic) => {
+	return (state: RootState) => state.characteristics.data[index][model];
+};
 export const isValidSelector = (state: RootState) => {
-	return !state.characteris.data?.some(
+	return !state.characteristics.data?.some(
 		characteristic =>
 			characteristic.speed < 0 ||
 			characteristic.force <= 0 ||

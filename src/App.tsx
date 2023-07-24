@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import SelectTable from './components/selectTable/selectTable';
 import EditTable from './components/editTable/editTable';
 import { fetchTrains, trainsSelector } from './redux/slices/trains';
-import { characterisReducers } from './redux/slices/characteristics';
+import { characteristicsReducers } from './redux/slices/characteristics';
 import useTypedDispatch from './hooks/useTypedDispatsh';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 		(i: number) => {
 			setSelected(i);
 			if (Array.isArray(data[i]?.characteristics)) {
-				dispatch(characterisReducers.init(data[i].characteristics));
+				dispatch(characteristicsReducers.init(data[i].characteristics));
 			}
 		},
 		[selected, data]

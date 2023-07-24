@@ -4,7 +4,7 @@ import cls from './editTable.module.scss';
 import Row from './row/row';
 import Button from '../UI/button/button';
 import { Characteristic } from '../../redux/slices/trains/types';
-import { characterisReducers, characterisSelector, isValidSelector } from '../../redux/slices/characteristics';
+import { characteristicsReducers, characteristicsSelector, isValidSelector } from '../../redux/slices/characteristics';
 import useTypedDispatch from '../../hooks/useTypedDispatsh';
 
 interface EditTableProps {
@@ -16,7 +16,7 @@ interface EditTableProps {
 
 const EditTable: FC<EditTableProps> = React.memo(({ title, name, data, onClose }) => {
 	const dispatch = useTypedDispatch();
-	const values = useSelector(characterisSelector).data;
+	const values = useSelector(characteristicsSelector);
 	const isValid = useSelector(isValidSelector);
 	const [precision, setPrecision] = useState(2);
 
@@ -25,7 +25,7 @@ const EditTable: FC<EditTableProps> = React.memo(({ title, name, data, onClose }
 	}, [values]);
 
 	const reset = useCallback(() => {
-		dispatch(characterisReducers.reset());
+		dispatch(characteristicsReducers.reset());
 	}, []);
 
 	function changePrecision(type: 'inc' | 'dec') {

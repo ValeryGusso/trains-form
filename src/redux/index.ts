@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import trains from './slices/trains';
-import characteris from './slices/characteristics';
+import characteristics from './slices/characteristics';
 
 const store = configureStore({
-	reducer: { trains, characteris },
+	reducer: { trains, characteristics },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
